@@ -1,0 +1,313 @@
+{
+    "ATP_PARTIAL_SAMPLE_1": {
+      "sap_header": {
+        "vbeln": "45002345",
+        "vkorg": "1100",
+        "vtweg": "15",
+        "spart": "00",
+        "kunnr": "S000999",
+        "audat": "2025-11-25",
+        "bstnk": "PO-55560",
+        "zstatus_oc": "Yellow",
+        "blocks": {
+          "INC": false,
+          "CRE": false,
+          "PS": false,
+          "GTS": false,
+          "BB": false,
+          "DB": false
+        },
+        "comments": "Partial ATP confirmed. Remaining quantities scheduled for next production cycle on 2025-12-27."
+      },
+      "sap_items": [
+        {
+          "posnr": "0000510",
+          "matnr": "FG1234",
+          "arktx": "Glacial Acetic Acid",
+          "kwmeng": 1000,
+          "uom": "KG",
+          "edatu_req": "2025-12-12",
+          "edatu_conf": "2025-12-12",
+          "mrp_type": "MRP",
+          "atp_status": "Partial"
+        },
+        {
+          "posnr": "0000610",
+          "matnr": "FG1236",
+          "arktx": "Vinyl Acetate",
+          "kwmeng": 500,
+          "uom": "KG",
+          "edatu_req": "2025-12-14",
+          "edatu_conf": "2025-12-14",
+          "mrp_type": "MRP",
+          "atp_status": "Partial"
+        },
+        {
+          "posnr": "0000810",
+          "matnr": "FG1239",
+          "arktx": "Propionic Anhydride",
+          "kwmeng": 250,
+          "uom": "KG",
+          "edatu_req": "2025-12-12",
+          "edatu_conf": "TBD",
+          "mrp_type": "MRP",
+          "atp_status": "Insufficient"
+        }
+      ],
+      "current_stock": [
+        { "material_id": "FG1234", "description": "Glacial Acetic Acid", "current": 500, "required": 1000 },
+        { "material_id": "FG1236", "description": "Vinyl Acetate", "current": 200, "required": 500 },
+        { "material_id": "FG1239", "description": "Propionic Anhydride", "current": 200, "required": 250 }
+      ],
+      "production_schedule": [
+        { "line_id": "PL06", "material_id": "FG1234", "plant": "Plant-A", "start": "2025-12-27", "end": "2025-12-31", "capacity": 6000 },
+        { "line_id": "PL08", "material_id": "FG1236", "plant": "Plant-B", "start": "2025-12-27", "end": "2025-12-31", "capacity": 4000 },
+        { "line_id": "PL09", "material_id": "FG1239", "plant": "Plant-C", "start": "2025-12-27", "end": "2025-12-31", "capacity": 4000 }
+      ],
+      "atp_records": [
+        {
+          "atp_check_id": "ATP-45002345-10",
+          "item": "0000510",
+          "requested": "2025-12-12",
+          "available": "2025-12-27",
+          "method": "MRP",
+          "status": "Rescheduled"
+        },
+        {
+          "atp_check_id": "ATP-45002345-10",
+          "item": "0000610",
+          "requested": "2025-12-14",
+          "available": "2025-12-27",
+          "method": "MRP",
+          "status": "Rescheduled"
+        },
+        {
+          "atp_check_id": "ATP-45002345-10",
+          "item": "0000810",
+          "requested": "2025-12-12",
+          "available": "2025-12-27",
+          "method": "MRP",
+          "status": "Rescheduled"
+        }
+      ],
+      "salesforce": {
+        "account": {
+          "id": "0725h00000C006754",
+          "name": "LyondellBasell Industries",
+          "credit_status": "Clear",
+          "tier": "Strategic"
+        },
+        "products": [
+          { "id": "50000501", "name": "Glacial Acetic Acid", "product_code": "FG1234", "active": true },
+          { "id": "50002030", "name": "Vinyl Acetate", "product_code": "FG1236", "active": true },
+          { "id": "50000432", "name": "Propionic Anhydride", "product_code": "FG1239", "active": true }
+        ],
+        "pricebook_entries": [
+          { "product": "50000501", "price": 1.5, "currency": "USD" },
+          { "product": "50002030", "price": 1.2, "currency": "USD" },
+          { "product": "50000432", "price": 2.0, "currency": "USD" }
+        ],
+        "order": {
+          "id": "8015g00000SO45002345",
+          "sap_order": "45002345",
+          "status": "Pending",
+          "billing_block": "Activation",
+          "atp_status": "Rescheduled"
+        },
+        "case": {
+          "id": "5005g00000CASE016",
+          "subject": "ATP Issue: Insufficient Stock for FG1234, FG1236, FG1239",
+          "priority": "High",
+          "status": "In Progress"
+        }
+      },
+      "suppliers": [
+        { "id": "SUP-ETH-01", "name": "Chemsupply Industries", "lead_time_days": 5, "min_order": 1000, "rate": 1.5 },
+        { "id": "SUP-ETH-02", "name": "GlobalChem LLC", "lead_time_days": 7, "min_order": 1500, "rate": 2.5 }
+      ]
+    },
+  
+    "ATP_PENDING_SAMPLE": {
+      "sap_header": {
+        "vbeln": "45007543",
+        "vkorg": "1000",
+        "vtweg": "10",
+        "spart": "00",
+        "kunnr": "C000430",
+        "audat": "2025-11-01",
+        "bstnk": "PO-69871",
+        "zstatus_oc": "Red",
+        "blocks": { "INC": true },
+        "comments": "Quantity mismatch: Ordered 1000, Received 975."
+      },
+      "sap_items": [
+        {
+          "posnr": "000010",
+          "matnr": "IT00765",
+          "arktx": "Butyric Anhydride",
+          "kwmeng": 1000,
+          "uom": "KG",
+          "edatu_req": "2025-11-12",
+          "edatu_conf": "2025-11-15",
+          "mrp_type": "MRP",
+          "atp_status": "Pending"
+        }
+      ],
+      "current_stock": [
+        { "material_id": "FG2009", "description": "Polymer Resin", "current": 975, "required": 1000 }
+      ],
+      "production_schedule": [
+        { "line_id": "PL01", "plant": "Plant-G", "material_id": "FG2009", "start": "2025-12-07", "end": "2025-12-09", "capacity": 6000 }
+      ],
+      "atp_records": [
+        {
+          "atp_check_id": "ATP-45001550-10",
+          "order": "45007543",
+          "item": "000015",
+          "requested": "2025-12-05",
+          "available": "2025-12-09",
+          "status": "Rescheduled"
+        }
+      ],
+      "salesforce": {
+        "account": {
+          "id": "0015g00000C000051",
+          "name": "Mineral Technologies",
+          "credit_status": "Clear",
+          "tier": "Standard"
+        },
+        "products": [
+          { "id": "01t5g00000IT00014", "name": "Butyric Anhydride", "product_code": "IT00014", "active": true }
+        ]
+      }
+    },
+  
+    "ATP_INSUFFICIENT_SAMPLE": {
+      "sap_header": {
+        "vbeln": "45009856",
+        "vkorg": "1020",
+        "vtweg": "10",
+        "spart": "00",
+        "kunnr": "C000999",
+        "audat": "2025-11-25",
+        "bstnk": "PO-56778",
+        "zstatus_oc": "Yellow",
+        "comments": "ATP failed, no stock across plants."
+      },
+      "sap_items": [
+        {
+          "posnr": "000050",
+          "matnr": "FG5677",
+          "arktx": "Thermoplastic Polyester Elastomer",
+          "kwmeng": 8000,
+          "atp_status": "Insufficient"
+        },
+        {
+          "posnr": "000052",
+          "matnr": "FG4567",
+          "arktx": "Polybutylene Terephthalate",
+          "kwmeng": 6000,
+          "atp_status": "Insufficient"
+        },
+        {
+          "posnr": "000055",
+          "matnr": "FG4557",
+          "arktx": "Polyvinyl Acetate (PVAC)",
+          "kwmeng": 4000,
+          "atp_status": "Insufficient"
+        }
+      ],
+      "current_stock": [
+        { "material_id": "FG5677", "current": 4000, "required": 8000 },
+        { "material_id": "FG4567", "current": 3000, "required": 6000 },
+        { "material_id": "FG4557", "current": 3000, "required": 4000 }
+      ],
+      "production_schedule": [
+        { "line_id": "PL01", "material_id": "FG5677", "start": "2026-01-07", "end": "2026-01-09", "capacity": 10000 }
+      ],
+      "atp_records": [
+        {
+          "atp_check_id": "ATP-45009856-10",
+          "item": "000050",
+          "requested": "2025-12-07",
+          "available": "2026-01-07",
+          "status": "Rescheduled"
+        }
+      ],
+      "salesforce": {
+        "account": {
+          "id": "0015g00000C003456",
+          "name": "Exxon Mobil",
+          "credit_status": "Clear",
+          "tier": "Strategic"
+        }
+      }
+    },
+  
+    "ATP_SUBSTITUTE_SAMPLE": {
+      "sap_header": {
+        "vbeln": "45007111",
+        "vkorg": "1000",
+        "vtweg": "10",
+        "spart": "00",
+        "kunnr": "C000408",
+        "audat": "2025-11-02",
+        "bstnk": "PO-69872",
+        "zstatus_oc": "Green",
+        "comments": "Received substitute product acetyl isobutyric anhydride."
+      },
+      "sap_items": [
+        {
+          "posnr": "000010",
+          "matnr": "IT00766",
+          "arktx": "isobutyric anhydride",
+          "kwmeng": 1000,
+          "atp_status": "Available"
+        }
+      ],
+      "current_stock": [
+        { "material_id": "FG2001", "description": "acetyl isobutyric anhydride", "current": 1000, "required": 1000 }
+      ],
+      "salesforce": {
+        "account": {
+          "id": "0015g00000C000055",
+          "name": "Carter Chemicals Inc.",
+          "credit_status": "Clear"
+        }
+      }
+    },
+  
+    "ATP_AVAILABLE_SAMPLE": {
+      "sap_header": {
+        "vbeln": "45007711",
+        "vkorg": "1000",
+        "vtweg": "10",
+        "spart": "00",
+        "kunnr": "C000408",
+        "audat": "2025-11-07",
+        "bstnk": "PO-68977",
+        "zstatus_oc": "Green"
+      },
+      "sap_items": [
+        {
+          "posnr": "000010",
+          "matnr": "IT00015",
+          "arktx": "Butyric Anhydride",
+          "kwmeng": 1000,
+          "atp_status": "Available"
+        }
+      ],
+      "current_stock": [
+        { "material_id": "FG2001", "description": "Polymer Resin", "current": 1000, "required": 1000 }
+      ],
+      "atp_records": [
+        {
+          "atp_check_id": "ATP-45001550-10",
+          "requested": "2025-12-05",
+          "available": "2025-12-09",
+          "status": "Scheduled"
+        }
+      ]
+    }
+  }
+  

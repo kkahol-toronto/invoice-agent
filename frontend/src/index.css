@@ -1,0 +1,12 @@
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(135deg, #fdf1ff 0%, #ffe0d1 35%, #fdf9fb 100%);
+}

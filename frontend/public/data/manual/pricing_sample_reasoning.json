@@ -1,0 +1,16 @@
+{
+  "rootCause": "Regional FX surcharge not rolled into the shared pricing formula after Q3 rate card refresh.",
+  "financialImpact": 12450,
+  "riskAssessment": "Medium – affects two Tier-1 customers if not resolved before December billing.",
+  "stakeholders": [
+    "Pricing Ops",
+    "Regional Finance",
+    "Strategic Accounts"
+  ],
+  "resolutionPlan": [
+    "Collect CFO approval (target 2025-12-05)",
+    "Publish revised formula PolyIndex + 0.47",
+    "Send customer notice with revised rate sheet and credit memo reference"
+  ]
+}
+

@@ -1,0 +1,23 @@
+{
+  "document": "Pricing Formula Not Updated",
+  "sku": "POM-7741",
+  "current_formula": "Polymer Index + 0.35",
+  "observed_deviation": "-0.08 vs contract",
+  "contracts_impacted": [
+    {
+      "customer": "Celanese Europe BV",
+      "po": "PO-889132",
+      "variance": -6800
+    },
+    {
+      "customer": "Chemelle LATAM",
+      "po": "PO-771210",
+      "variance": -3100
+    }
+  ],
+  "recommended_actions": [
+    "Update SAP pricing condition ZP11 before next billing cycle",
+    "Issue provisional credit note for November shipments"
+  ]
+}
+

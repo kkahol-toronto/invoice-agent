@@ -1,0 +1,42 @@
+{
+    "document": "ATP Confirmation",
+    "company": "Celanese",
+    "atp_confirmation_date": "2025-11-25",
+    "atp_notes": "Full ATP confirmed. Requested quantity available across inventory.",
+    "order_reference": {
+      "customer_name": "Marry Leos",
+      "company_name": "Carter Chemicals Inc.",
+      "order_id": "8015g00000SO45009732"
+    },
+    "order": {
+      "items": [
+        {
+          "product_name": "Isobutyric Anhydride",
+          "requested_quantity": 1000,
+          "atp_adjusted_quantity": 1000,
+          "unit_price": 1.5,
+          "total_price": 1500,
+          "atp_status": "Available",
+          "atp_promise_date": "2025-12-10"
+        }
+      ],
+      "order_total_price": 1500
+    },
+    "ship_to": {
+      "company_name": "Carter Chemicals Inc.",
+      "address": "29 Washington Pl",
+      "city": "New York",
+      "state": "NY",
+      "zip_code": "10003"
+    },
+    "billing": {
+      "name": "Marry Leos",
+      "payment_method": {
+        "type": "Visa",
+        "masked_number": "**** **** **** 9081",
+        "expiration": "12/29"
+      }
+    },
+    "atp_reference_number": "ATP-45009732-01"
+  }
+  

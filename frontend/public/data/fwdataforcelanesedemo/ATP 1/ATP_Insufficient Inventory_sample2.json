@@ -1,0 +1,57 @@
+{
+    "document": "Celanese Product Sales Order Form",
+    "instructions": {
+      "notes": [
+        "Print form and enter all information clearly.",
+        "Use the table to calculate shipping and handling.",
+        "Call for a shipping quote if ordering more than 1000 items.",
+        "PO, check, or money order payable to SERVE, Inc. must accompany the order if mailed.",
+        "Online credit card orders must be submitted via the SERVE online portal.",
+        "No sales tax is charged."
+      ],
+      "mail_or_fax_to": {
+        "company": "Celanese",
+        "address": "222 Las Colinas Blvd W, Suite 900N, Irving, Texas, 75039 USA",
+        "fax": "941-556-1851",
+        "phone": "972-443-4000"
+      }
+    },
+    "customer": {
+      "name": "Frank Lutz",
+      "title": "Supply Chain Manager",
+      "organization": "Mineral Technologies",
+      "date": "11/12/2025",
+      "po_or_check_number": "PO-69871",
+      "address_1": "181 Mercer Street",
+      "address_2": "",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10012",
+      "phone": "+1 (512) 447-1779",
+      "email": "flutz@mineraltechnologies.com"
+    },
+    "order_information": {
+      "products": [
+        {
+          "product_name": "Butyric Anhydride",
+          "unit_price": 2,
+          "quantity": 1000,
+          "total_price": 2000,
+          "atp_status": "Pending"
+        }
+      ]
+    },
+    "shipping_handling": {
+      "rules": {
+        "1_to_50_items": "$10.00",
+        "51_to_100_items": "$18.00",
+        "over_100_items": "15% of total item cost",
+        "over_1000_items": "Call for quote"
+      }
+    },
+    "office_use_only": {
+      "date_received": "11/12/2025",
+      "date_shipped": "11/15/2025"
+    }
+  }
+  

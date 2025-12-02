@@ -1,0 +1,148 @@
+.vendor-map {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vendor-map__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.vendor-map__header h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.vendor-map__header p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.vendor-map__wrapper {
+  position: relative;
+  width: 100%;
+  height: 420px;
+}
+
+.vendor-map__viewport {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.vendor-map__viewport svg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.legend {
+  display: flex;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.dot--ok {
+  background: #5dd39e;
+}
+.dot--pending {
+  background: #ffbf69;
+}
+.dot--risk {
+  background: #ff6b6b;
+}
+
+.marker-label {
+  font-size: 10px;
+  fill: var(--celanese-navy);
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.map-tooltip {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+  max-width: 300px;
+}
+
+.map-tooltip--top {
+  transform: translate(-50%, -100%);
+  margin-top: -10px;
+}
+
+.map-tooltip--bottom {
+  transform: translate(-50%, 0);
+  margin-top: 10px;
+}
+
+.tooltip-content {
+  background: rgba(26, 31, 58, 0.95);
+  border: 2px solid #6b3ce9;
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #ffffff;
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  animation: fadeIn 0.2s ease-in;
+}
+
+.tooltip-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+
+.tooltip-status {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #d4af37;
+}
+
+.tooltip-type {
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: #cbd5e1;
+}
+
+.tooltip-notes {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #e2e8f0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -90%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+

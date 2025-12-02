@@ -1,0 +1,51 @@
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 24px;
+}
+
+.kpi-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.kpi-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.kpi-value {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.kpi-subtle {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.kpi-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(107, 60, 233, 0.12);
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.kpi-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--celanese-purple);
+}
+

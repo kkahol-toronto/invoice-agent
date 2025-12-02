@@ -1,0 +1,135 @@
+.case-table {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-table__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.case-table__controls h3 {
+  margin: 0;
+}
+
+.case-table__controls p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.case-table__controls .controls {
+  display: flex;
+  gap: 12px;
+}
+
+.case-table__controls input,
+.case-table__controls select {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(107, 60, 233, 0.2);
+  font-size: 14px;
+  min-width: 220px;
+}
+
+.case-table__table {
+  overflow-x: auto;
+}
+
+.case-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.case-table th {
+  text-align: left;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  padding: 12px;
+}
+
+.case-table td {
+  padding: 16px 12px;
+  border-top: 1px solid rgba(11, 20, 55, 0.08);
+  font-size: 14px;
+}
+
+.case-table tbody tr {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.case-table tbody tr:hover {
+  background: rgba(107, 60, 233, 0.06);
+}
+
+.case-table td span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.pill--atp {
+  background: var(--celanese-purple);
+}
+
+.pill--logistics {
+  background: #ffbf69;
+  color: #0b1437;
+}
+
+.pill--pricing {
+  background: #6bd4c8;
+  color: #0b1437;
+}
+
+.status {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.status--ok {
+  background: rgba(93, 211, 158, 0.15);
+  color: #0b5f35;
+}
+.status--pending {
+  background: rgba(255, 191, 105, 0.2);
+  color: #8a4d00;
+}
+.status--risk {
+  background: rgba(255, 107, 107, 0.2);
+  color: #7a061f;
+}
+
+@media (max-width: 768px) {
+  .case-table__controls {
+    flex-direction: column;
+  }
+  .case-table__controls .controls {
+    width: 100%;
+    flex-direction: column;
+  }
+  .case-table__controls input,
+  .case-table__controls select {
+    width: 100%;
+  }
+}
+

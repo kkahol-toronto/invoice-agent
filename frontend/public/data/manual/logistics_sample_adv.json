@@ -1,0 +1,30 @@
+{
+  "document": "Logistics Sample 6",
+  "carrier": "Pacific Logistics",
+  "milestones": [
+    {
+      "step": "Gate In - Shanghai",
+      "timestamp": "2025-11-12T09:15:00Z",
+      "status": "Complete"
+    },
+    {
+      "step": "Loaded on Vessel",
+      "timestamp": "2025-11-14T18:40:00Z",
+      "status": "Complete"
+    },
+    {
+      "step": "Arrived Long Beach",
+      "timestamp": "2025-11-23T04:30:00Z",
+      "status": "Hold"
+    }
+  ],
+  "issues": [
+    "Port congestion at Long Beach",
+    "Drayage capacity shortage"
+  ],
+  "recommended_actions": [
+    "Switch to Oakland inland ramp for next shipment",
+    "Book expedited rail slot to Riverside DC"
+  ]
+}
+

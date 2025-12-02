@@ -1,0 +1,19 @@
+{
+  "rootCause": "Customs inspection triggered due to HS code mismatch",
+  "supplyImpactDays": 4,
+  "expediteOptions": [
+    {
+      "mode": "Rail + Truck",
+      "eta": "2025-11-30",
+      "cost": 7400
+    },
+    {
+      "mode": "Direct FTL",
+      "eta": "2025-12-01",
+      "cost": 9200
+    }
+  ],
+  "customerMessaging": "Inform Riverside operations of a four-day delay. Offer split shipment option with 60% arriving 11/30.",
+  "nextReview": "2025-11-27"
+}
+
