@@ -34,11 +34,11 @@ export function KPIGrid({ stats }) {
         <div className="kpi-card" key={card.label}>
           <span className="kpi-label">{card.label}</span>
           <div className="kpi-value" style={{ color: card.accent }}>
-            {card.value.toLocaleString()}
+            {(card.value != null ? card.value : 0).toLocaleString()}
           </div>
           <span className="kpi-subtle">{card.subtle}</span>
           <div className="kpi-bar">
-            <span style={{ width: `${Math.min(100, card.value)}%`, background: card.accent }} />
+            <span style={{ width: `${Math.min(100, card.value != null ? card.value : 0)}%`, background: card.accent }} />
           </div>
         </div>
       ))}

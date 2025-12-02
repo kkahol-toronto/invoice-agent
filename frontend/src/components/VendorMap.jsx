@@ -13,8 +13,9 @@ export function VendorMap({ cases = [] }) {
   const wrapperRef = useRef(null);
 
   const markers = (cases || []).reduce((acc, caseItem) => {
-    const lon = Number(caseItem?.location?.lon);
-    const lat = Number(caseItem?.location?.lat);
+    if (!caseItem || !caseItem.location) return acc;
+    const lon = Number(caseItem.location.lon);
+    const lat = Number(caseItem.location.lat);
     if (
       !Number.isFinite(lon) ||
       !Number.isFinite(lat) ||
@@ -107,11 +108,15 @@ export function VendorMap({ cases = [] }) {
                 ))
               }
             </Geographies>
-            {markers.map((caseItem) => {
+            {markers.map((caseItem, index) => {
+              if (!caseItem) return null;
               const coords = Array.isArray(caseItem.coordinates) ? caseItem.coordinates : null;
               if (!coords) return null;
+              
+              const isHovered = hoveredMarker?.id === caseItem.id;
+              
               return (
-                <Marker key={caseItem.id} coordinates={coords}>
+                <Marker key={caseItem.id || Math.random()} coordinates={coords}>
                   <g
                     onMouseEnter={(e) => handleMarkerMouseEnter(caseItem, e)}
                     onMouseMove={(e) => handleMarkerMouseMove(e)}
@@ -120,9 +125,15 @@ export function VendorMap({ cases = [] }) {
                   >
                     <circle r={7} fill={badgeColor(caseItem.status)} stroke="#fff" strokeWidth={2} />
                     <circle r={12} fill="transparent" stroke="transparent" />
-                    <text textAnchor="middle" y={-12} className="marker-label">
-                      {caseItem.vendor}
-                    </text>
+                    {isHovered && (
+                      <text 
+                        textAnchor="middle" 
+                        y={-12} 
+                        className="marker-label marker-label--hovered"
+                      >
+                        {caseItem.vendor || 'Unknown'}
+                      </text>
+                    )}
                   </g>
                 </Marker>
               );
@@ -138,9 +149,9 @@ export function VendorMap({ cases = [] }) {
             }}
           >
             <div className="tooltip-content">
-              <div className="tooltip-title">{hoveredMarker.vendor}</div>
-              <div className="tooltip-status">Status: {hoveredMarker.status}</div>
-              <div className="tooltip-type">Type: {hoveredMarker.type}</div>
+              <div className="tooltip-title">{hoveredMarker.vendor || 'Unknown Vendor'}</div>
+              <div className="tooltip-status">Status: {hoveredMarker.status || 'Unknown'}</div>
+              <div className="tooltip-type">Type: {hoveredMarker.type || 'N/A'}</div>
               <div className="tooltip-notes">{hoveredMarker.atpNotes || 'No additional notes.'}</div>
             </div>
           </div>

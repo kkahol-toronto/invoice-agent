@@ -1,0 +1,39 @@
+{
+    "customer_name": "Sean Micheal",
+    "company_name": "NextGen Products LLC",
+    "company_address": "103 Industrial Park, Suite 100, Springfield, IL 62701",
+    "contact": {
+      "phone": "(122) 455-7692",
+      "fax": "(122)208-7643",
+      "email": "Nextgen@products.com"
+    },
+    "order": {
+      "order_id": "CELS-2024-001",
+      "order_date": "2024-10-01",
+      "expected_delivery": "2024-10-10"
+    },
+    "product": {
+      "name": "Acetate Tow",
+      "product_code": "AT-556",
+      "quantity": 500,
+      "unit_price": 50,
+      "total": 25000
+    },
+    "payment": {
+      "card_type": "Visa",
+      "exp": "11/30",
+      "total": 25000
+    },
+    "ship_to": {
+      "facility_name": "FedEx Freight",
+      "contact": "Jhordan Smith",
+      "address": "122 Avenue Road, Springfield",
+      "phone": "(987)-654-3210"
+    },
+    "bill_to": {
+      "facility_name": "NextGen Products LLC",
+      "contact": "Sean Micheal",
+      "address": "103 Industrial Park, Suite100, Springfield"
+    }
+  }
+  

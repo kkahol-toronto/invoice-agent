@@ -6,9 +6,11 @@ export function CaseTable({ cases, onOpenCase }) {
   const [filter, setFilter] = useState('ALL');
 
   const filtered = useMemo(() => {
+    if (!cases || cases.length === 0) return [];
     return cases.filter((caseItem) => {
-      const matchesType = filter === 'ALL' || caseItem.type === filter;
-      const haystack = `${caseItem.id} ${caseItem.vendor} ${caseItem.customer}`.toLowerCase();
+      if (!caseItem) return false;
+      const matchesType = filter === 'ALL' || (caseItem.type && caseItem.type === filter);
+      const haystack = `${caseItem.id || ''} ${caseItem.vendor || ''} ${caseItem.customer || ''}`.toLowerCase();
       return matchesType && haystack.includes(search.toLowerCase());
     });
   }, [cases, search, filter]);
@@ -53,19 +55,27 @@ export function CaseTable({ cases, onOpenCase }) {
             {filtered.map((caseItem) => (
               <tr key={caseItem.id} onClick={() => onOpenCase(caseItem)}>
                 <td>
-                  <strong>{caseItem.id}</strong>
-                  <span>{caseItem.label}</span>
+                  <strong>{caseItem.id || 'N/A'}</strong>
+                  <span>{caseItem.label || 'Unnamed Case'}</span>
                 </td>
-                <td>{caseItem.vendor}</td>
-                <td>{caseItem.customer}</td>
+                <td>{caseItem.vendor || 'N/A'}</td>
+                <td>{caseItem.customer || 'N/A'}</td>
                 <td>
-                  <span className={`pill pill--${caseItem.type.toLowerCase()}`}>{caseItem.type}</span>
+                  <span className={`pill pill--${(caseItem.type || 'ATP').toLowerCase()}`}>
+                    {caseItem.type || 'ATP'}
+                  </span>
                 </td>
                 <td>
-                  <span className={`status status--${statusVariant(caseItem.status)}`}>{caseItem.status}</span>
+                  <span className={`status status--${statusVariant(caseItem.status)}`}>
+                    {caseItem.status || 'Unknown'}
+                  </span>
                 </td>
-                <td>${caseItem.amount.toLocaleString()}</td>
-                <td>{caseItem.dueDate}</td>
+                <td>
+                  {caseItem.amount != null && caseItem.amount !== undefined
+                    ? `$${Number(caseItem.amount).toLocaleString()}`
+                    : 'N/A'}
+                </td>
+                <td>{caseItem.dueDate || 'TBD'}</td>
               </tr>
             ))}
           </tbody>

@@ -1,7 +1,8 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
 import './CaseModal.css';
 
-const STAGES = [
+// ATP Pipeline Stages (6 stages)
+const ATP_STAGES = [
   { id: 'start', label: 'Start', icon: '▶' },
   { id: 'advanced', label: 'Advanced Extraction', icon: '🔍' },
   { id: 'reasoning', label: 'Reasoning Extraction', icon: '🧠' },
@@ -10,7 +11,25 @@ const STAGES = [
   { id: 'communication', label: 'Communication Agent', icon: '✉️' }
 ];
 
-const STAGE_MESSAGES = {
+// Logistics Pipeline Stages (14 stages - includes communication)
+const LOGISTICS_STAGES = [
+  { id: 'stage0', label: 'File Ingestion Agent', icon: '📁' },
+  { id: 'stage1', label: 'Document Classification Agent', icon: '📋' },
+  { id: 'stage2', label: 'OCR + Vision Extraction Agent', icon: '👁️' },
+  { id: 'stage3', label: 'Layout Reconstruction Agent', icon: '🏗️' },
+  { id: 'stage4', label: 'Key-Value Extraction Agent', icon: '🔑' },
+  { id: 'stage5', label: 'Line-Item Table Extraction Agent', icon: '📊' },
+  { id: 'stage6', label: 'Logistics Intelligence Agent', icon: '🧠' },
+  { id: 'stage7', label: 'Validation + Cross-Checking Agent', icon: '✅' },
+  { id: 'stage8', label: 'Business Rules Agent', icon: '⚖️' },
+  { id: 'stage9', label: 'Entity Normalization Agent', icon: '🔄' },
+  { id: 'stage10', label: 'Master JSON Assembly Agent', icon: '📦' },
+  { id: 'stage11', label: 'Domain Knowledge Agent', icon: '🎓' },
+  { id: 'stage12', label: 'Integration Agent', icon: '🔌' },
+  { id: 'communication', label: 'Communication Agent', icon: '✉️' }
+];
+
+const ATP_STAGE_MESSAGES = {
   start: 'Initializing agentic pipeline...',
   advanced: 'Running advanced OCR extraction on invoice document...',
   reasoning: 'Applying reasoning agent to extract structured data...',
@@ -19,13 +38,47 @@ const STAGE_MESSAGES = {
   communication: 'Drafting vendor communication based on ATP status...'
 };
 
-const STAGE_COMPLETION_MESSAGES = {
+const ATP_STAGE_COMPLETION_MESSAGES = {
   start: 'Pipeline initialized. Ready to process invoice.',
   advanced: `Successfully extracted ${Math.floor(Math.random() * 15 + 20)} fields including order IDs, product details, quantities, and pricing information.`,
   reasoning: `Identified ${Math.floor(Math.random() * 5 + 8)} key entities and relationships. Validated data consistency across document sections.`,
   combination: 'Merged extraction results. Resolved 2 inconsistencies in product IDs and pricing. Final structured data ready.',
   supplyDb: 'ATP database queried. Retrieved inventory status across 3 plants. Calculated promise dates and availability windows.',
   communication: 'Email draft generated with ATP status, promise dates, and recommended actions for vendor review.'
+};
+
+const LOGISTICS_STAGE_MESSAGES = {
+  stage0: 'Validating file MIME type and creating job ID...',
+  stage1: 'Classifying document type (Sales Order, Purchase Order, Logistics Invoice, etc.)...',
+  stage2: 'Running OCR and vision extraction on all pages...',
+  stage3: 'Reconstructing document layout and structure...',
+  stage4: 'Extracting key-value pairs (Customer PO, Order Date, Buyer name, etc.)...',
+  stage5: 'Extracting line-item tables with product codes and quantities...',
+  stage6: 'Analyzing logistics intelligence (delivery dates, delays, customs issues)...',
+  stage7: 'Validating extracted data and cross-checking for accuracy...',
+  stage8: 'Applying business rules and domain logic...',
+  stage9: 'Normalizing entities (company names, addresses, product codes)...',
+  stage10: 'Assembling master JSON from all extraction stages...',
+  stage11: 'Adding domain knowledge (industry tags, hazmat flags, customs flags)...',
+  stage12: 'Pushing to ECM, ERP, or DMS systems (SAP, Oracle, Dynamics 365)...',
+  communication: 'Drafting communication for concerned parties based on logistics status...'
+};
+
+const LOGISTICS_STAGE_COMPLETION_MESSAGES = {
+  stage0: `File validated (${['PDF', 'Image-PDF', 'Scan'][Math.floor(Math.random() * 3)]}). Job ID created. File stored in blob storage.`,
+  stage1: `Document classified as ${['Logistics Invoice', 'Bill of Lading', 'Delivery Note', 'Sales Order Form'][Math.floor(Math.random() * 4)]} with 98% confidence.`,
+  stage2: `OCR completed on ${Math.floor(Math.random() * 3 + 1)} pages. Extracted ${Math.floor(Math.random() * 20 + 30)} text boxes, ${Math.floor(Math.random() * 3 + 2)} tables, and mapped bounding boxes.`,
+  stage3: 'Layout reconstructed. Rebuilt grids (Bill To / Ship To), line-item tables, and multi-column layouts. OCR misalignments corrected.',
+  stage4: `Extracted ${Math.floor(Math.random() * 15 + 20)} key-value pairs including Customer PO, Order Date, Buyer name, Shipping method, and Payment terms. Normalized phone numbers and dates.`,
+  stage5: `Extracted ${Math.floor(Math.random() * 3 + 2)} line items with product codes, quantities, and totals. Normalized product codes and captured multi-line comments.`,
+  stage6: `Identified ${Math.floor(Math.random() * 2 + 1)} logistics events, ${Math.floor(Math.random() * 2 + 1)} risk flags. Tagged with keywords: ${['customs_delay', 'staggered_delivery', 'inventory_shortage'][Math.floor(Math.random() * 3)]}.`,
+  stage7: 'Validation complete. Address validated, date logic verified, totals checked. All anomalies flagged and resolved.',
+  stage8: `Applied business rules. Detected ${['Partial shipment', 'Customs documentation incomplete', 'B2B chemical order'][Math.floor(Math.random() * 3)]}. Status and risk levels assigned.`,
+  stage9: 'Entities normalized. Company names standardized, addresses cleaned into components, product names standardized for database integration.',
+  stage10: 'Master JSON assembled. All stages merged into canonical schema. Missing fields inferred. Final structured record created.',
+  stage11: `Domain knowledge added. Industry classified as ${['Chemical', 'Manufacturing', 'Industrial'][Math.floor(Math.random() * 3)]}. Hazmat and customs flags applied.`,
+  stage12: `Integration complete. Data pushed to ${['SAP', 'Oracle SCM', 'Dynamics 365', 'Kagen Enterprise DMS'][Math.floor(Math.random() * 4)]}. Confirmation received with row identifiers.`,
+  communication: 'Email draft generated with logistics status, delivery dates, and recommended actions for concerned parties.'
 };
 
 export function CaseModal({ selectedCase, onClose }) {
@@ -42,9 +95,17 @@ export function CaseModal({ selectedCase, onClose }) {
   const processedTimeoutRef = useRef(null);
   const stageIndexRef = useRef(0);
 
+  // Determine which pipeline to use based on case type
+  const isLogistics = selectedCase?.type === 'Logistics';
+  const STAGES = isLogistics ? LOGISTICS_STAGES : ATP_STAGES;
+  const STAGE_MESSAGES = isLogistics ? LOGISTICS_STAGE_MESSAGES : ATP_STAGE_MESSAGES;
+  const STAGE_COMPLETION_MESSAGES = isLogistics ? LOGISTICS_STAGE_COMPLETION_MESSAGES : ATP_STAGE_COMPLETION_MESSAGES;
+
   const merged = useMemo(() => {
-    if (!selectedCase?.advanced || !selectedCase?.reasoning) return {};
-    return { ...selectedCase.advanced, ...selectedCase.reasoning };
+    if (!selectedCase) return {};
+    const advanced = selectedCase.advanced || {};
+    const reasoning = selectedCase.reasoning || {};
+    return { ...advanced, ...reasoning };
   }, [selectedCase]);
 
   const clearTimers = () => {
@@ -73,14 +134,19 @@ export function CaseModal({ selectedCase, onClose }) {
   };
 
   const processNextStage = () => {
-    if (stageIndexRef.current >= STAGES.length) {
+    // Get current stages based on case type
+    const currentStages = isLogistics ? LOGISTICS_STAGES : ATP_STAGES;
+    const currentMessages = isLogistics ? LOGISTICS_STAGE_MESSAGES : ATP_STAGE_MESSAGES;
+    const currentCompletionMessages = isLogistics ? LOGISTICS_STAGE_COMPLETION_MESSAGES : ATP_STAGE_COMPLETION_MESSAGES;
+
+    if (stageIndexRef.current >= currentStages.length) {
       setIsRunning(false);
       return;
     }
 
-    const stage = STAGES[stageIndexRef.current];
+    const stage = currentStages[stageIndexRef.current];
     setActiveStage(stage.id);
-    setCurrentMessage(STAGE_MESSAGES[stage.id]);
+    setCurrentMessage(currentMessages[stage.id]);
     setCompletionMessage(null);
     setShowProcessed(false);
 
@@ -90,7 +156,7 @@ export function CaseModal({ selectedCase, onClose }) {
       {
         timestamp: new Date().toLocaleTimeString(),
         stage: stage.label,
-        message: STAGE_MESSAGES[stage.id],
+        message: currentMessages[stage.id],
         type: 'info'
       }
     ]);
@@ -99,7 +165,8 @@ export function CaseModal({ selectedCase, onClose }) {
     const messageDuration = 3000 + Math.random() * 2000;
     timeoutRef.current = setTimeout(() => {
       // Show completion message
-      const completionMsg = STAGE_COMPLETION_MESSAGES[stage.id];
+      const currentCompletionMessages = isLogistics ? LOGISTICS_STAGE_COMPLETION_MESSAGES : ATP_STAGE_COMPLETION_MESSAGES;
+      const completionMsg = currentCompletionMessages[stage.id];
       setCurrentMessage(null);
       setCompletionMessage(completionMsg);
       
@@ -139,6 +206,12 @@ export function CaseModal({ selectedCase, onClose }) {
         processedTimeoutRef.current = setTimeout(() => {
           setShowProcessed(false);
 
+          // Special handling for integration stage (stage12) - show extracted JSON
+          if (stage.id === 'stage12' && isLogistics) {
+            // Mark stage as completed to show JSON
+            setCompletedStages((prev) => new Set([...prev, 'stage12']));
+          }
+
           // Special handling for communication stage
           if (stage.id === 'communication') {
             generateEmailDraft();
@@ -156,23 +229,49 @@ export function CaseModal({ selectedCase, onClose }) {
 
     const vendor = selectedCase.vendor || 'Vendor';
     const customer = selectedCase.customer || 'Customer';
-    const atpNotes = selectedCase.atpNotes || 'No ATP notes available.';
+    const atpNotes = selectedCase.atpNotes || 'No notes available.';
     const status = selectedCase.status || 'Unknown';
+    const caseId = selectedCase.id || 'N/A';
+    const amount = selectedCase.amount != null ? `$${Number(selectedCase.amount).toLocaleString()}` : 'TBD';
+    const dueDate = selectedCase.dueDate || 'TBD';
 
-    const draft = `Subject: ATP Status Update - ${selectedCase.id}
+    let draft = '';
+    
+    if (isLogistics) {
+      // Logistics email draft
+      draft = `Subject: Logistics Status Update - ${caseId}
+
+Dear ${customer} Team,
+
+We have completed processing your logistics order ${caseId}.
+
+Logistics Status: ${status}
+Order Amount: ${amount}
+Expected Delivery: ${dueDate}
+
+${atpNotes}
+
+The extracted data has been integrated into our systems. Please review the attached logistics document and confirm delivery details. If you have any questions about shipping, customs clearance, or delivery schedules, please contact our logistics team.
+
+Best regards,
+Enterprise Logistics Team`;
+    } else {
+      // ATP email draft
+      draft = `Subject: ATP Status Update - ${caseId}
 
 Dear ${vendor} Team,
 
-We have completed our analysis of your order ${selectedCase.id} for ${customer}.
+We have completed our analysis of your order ${caseId} for ${customer}.
 
 ATP Status: ${status}
 
 ${atpNotes}
 
-Please review the attached invoice and ATP confirmation details. If you have any questions or need to discuss alternative fulfillment options, please contact our ATP team at atp@celanese.com.
+Please review the attached invoice and ATP confirmation details. If you have any questions or need to discuss alternative fulfillment options, please contact our ATP team.
 
 Best regards,
-Celanese ATP Team`;
+Enterprise ATP Team`;
+    }
 
     setEmailDraft(draft);
   };
@@ -225,9 +324,10 @@ Celanese ATP Team`;
             <div className="agentic-pipeline">
               <h4>Agentic Pipeline</h4>
               <div className="pipeline-timeline">
-                {STAGES.map((stage, idx) => {
+                {(isLogistics ? LOGISTICS_STAGES : ATP_STAGES).map((stage, idx) => {
+                  const currentStages = isLogistics ? LOGISTICS_STAGES : ATP_STAGES;
                   const isActive = activeStage === stage.id;
-                  const isCompleted = STAGES.findIndex((s) => s.id === activeStage) > idx;
+                  const isCompleted = currentStages.findIndex((s) => s.id === activeStage) > idx;
                   const isCurrent = isActive && (currentMessage || showProcessed);
 
                   return (
@@ -281,33 +381,46 @@ Celanese ATP Team`;
 
             {/* Extraction Results - Only show after stages complete */}
             <div className="extraction-results">
-              {completedStages.has('advanced') && (
-                <section>
-                  <div className="section-title">Advanced extraction</div>
-                  <pre>{JSON.stringify(selectedCase.advanced, null, 2)}</pre>
-                </section>
-              )}
-              {completedStages.has('reasoning') && (
-                <section>
-                  <div className="section-title">Reasoning extraction</div>
-                  <pre>{JSON.stringify(selectedCase.reasoning, null, 2)}</pre>
-                </section>
-              )}
-              {completedStages.has('combination') && (
-                <section>
-                  <div className="section-title">Combination agent</div>
-                  <pre>{JSON.stringify(merged, null, 2)}</pre>
-                </section>
+              {isLogistics ? (
+                // Logistics: Show extracted JSON after integration stage
+                completedStages.has('stage12') && merged && Object.keys(merged).length > 0 && (
+                  <section>
+                    <div className="section-title">Extracted Data (Master JSON)</div>
+                    <pre>{JSON.stringify(merged, null, 2)}</pre>
+                  </section>
+                )
+              ) : (
+                // ATP: Show advanced, reasoning, and combination
+                <>
+                  {completedStages.has('advanced') && selectedCase?.advanced && (
+                    <section>
+                      <div className="section-title">Advanced extraction</div>
+                      <pre>{JSON.stringify(selectedCase.advanced, null, 2)}</pre>
+                    </section>
+                  )}
+                  {completedStages.has('reasoning') && selectedCase?.reasoning && (
+                    <section>
+                      <div className="section-title">Reasoning extraction</div>
+                      <pre>{JSON.stringify(selectedCase.reasoning, null, 2)}</pre>
+                    </section>
+                  )}
+                  {completedStages.has('combination') && merged && Object.keys(merged).length > 0 && (
+                    <section>
+                      <div className="section-title">Combination agent</div>
+                      <pre>{JSON.stringify(merged, null, 2)}</pre>
+                    </section>
+                  )}
+                </>
               )}
             </div>
 
-            {/* ATP Guidance */}
+            {/* Guidance Section */}
             <section className="atp-guidance">
-              <div className="section-title">ATP guidance</div>
-              <div className={`atp-badge atp-badge--${badgeVariant(selectedCase.status)}`}>
-                {selectedCase.status}
+              <div className="section-title">{isLogistics ? 'Logistics guidance' : 'ATP guidance'}</div>
+              <div className={`atp-badge atp-badge--${badgeVariant(selectedCase?.status)}`}>
+                {selectedCase?.status || 'Unknown'}
               </div>
-              <p>{selectedCase.atpNotes}</p>
+              <p>{selectedCase?.atpNotes || 'No guidance available.'}</p>
             </section>
 
             {/* Communication Agent */}
@@ -319,10 +432,11 @@ Celanese ATP Team`;
                   <button
                     className="btn-primary"
                     onClick={() => {
-                      alert('Email sent to vendor! (This is a demo action)');
+                      const recipient = isLogistics ? 'concerned parties' : 'vendor';
+                      alert(`Email sent to ${recipient}! (This is a demo action)`);
                     }}
                   >
-                    📧 Send to Vendor
+                    📧 {isLogistics ? 'Send to Concerned Parties' : 'Send to Vendor'}
                   </button>
                 </div>
               </section>

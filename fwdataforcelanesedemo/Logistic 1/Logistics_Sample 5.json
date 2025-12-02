@@ -1,0 +1,32 @@
+{
+    "customer_po": "PO-78901",
+    "order_date": "2025-11-25",
+    "bill_to": {
+      "company_name": "Polychem Industries",
+      "address": "155 Industrial Suite, Dallas Texas, United States",
+      "attn": "Asher Sterling",
+      "phone": "(512)-235-7643"
+    },
+    "ship_to": "Same as billing",
+    "items": [
+      {
+        "product_name": "Acetic Acid",
+        "product_id": "01t5g00000IT00102",
+        "product_code": "IT00102",
+        "is_active": "YES",
+        "unit_cost": null,
+        "quantity": null,
+        "total": null
+      }
+    ],
+    "payment_terms": null,
+    "shipping_method": "FastTrans Logistics",
+    "sub_total": null,
+    "credit_card": {
+      "number": "2343-5431-4512-1276",
+      "name": "Micky Wilson",
+      "exp": "06/27",
+      "billing_zip": "733501"
+    }
+  }
+  

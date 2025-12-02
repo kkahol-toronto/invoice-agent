@@ -1,0 +1,75 @@
+{
+    "document": "ATP Sample 4",
+    "company": "Celanese",
+    "contact_for_atp_updates": "atp@celanese.com",
+    "atp_confirmation_date": "2025-11-25",
+    "atp_notes": "ATP failed, no stock across plants. MRP simulation scheduled for 2025-11-28; tentative promise after 2026-01-07.",
+    "order": {
+      "items": [
+        {
+          "order_id": "1234r00000 SO45009856",
+          "product_id": "50009231",
+          "description": "Thermoplastic Polyester Elastomer",
+          "atp_adjusted_quantity": "8000 KG",
+          "price_per_kg": 1.5,
+          "price": 12000,
+          "atp_promise_date": "TBD",
+          "atp_status": "Insufficient"
+        },
+        {
+          "order_id": "1234r00000 SO45009856",
+          "product_id": "45670001",
+          "description": "Polybutylene Terephthalate",
+          "atp_adjusted_quantity": "6000 KG",
+          "price_per_kg": 1.2,
+          "price": 7200,
+          "atp_promise_date": "TBD",
+          "atp_status": "Insufficient"
+        },
+        {
+          "order_id": "1234r00000 SO45009856",
+          "product_id": "42211789",
+          "description": "Polyvinyl Acetate (PVAC)",
+          "atp_adjusted_quantity": "4000 KG",
+          "price_per_kg": 2.5,
+          "price": 10000,
+          "atp_promise_date": "TBD",
+          "atp_status": "Insufficient"
+        }
+      ],
+      "total_quantity_ordered": "24000 KG",
+      "total_price": 29200,
+      "atp_reference": "ATP-45009856-10"
+    },
+    "ship_to": {
+      "facility": "ChemPlus – Chicago Depot",
+      "name": "Michael Brown",
+      "address": "2500 W Industrial Park",
+      "city_state_zip": "Chicago, IL 60608",
+      "atp_shipping_date": "TBD",
+      "phone": "+1-312-555-0145",
+      "fax": "+1-312-555-014"
+    },
+    "bill_to": {
+      "facility": "ChemPlus Central Accounts",
+      "name": "Sarah Thompson",
+      "address": "800 Finance Ave",
+      "city_state_zip": "New York, NY 10001",
+      "atp_billing_date": "TBD",
+      "phone": "+1-212-555-0178",
+      "fax": "+1-212-555-0179"
+    },
+    "payment": {
+      "credit_card_type": "Master Card",
+      "credit_card_number": "5555 5555 5555 4444",
+      "expiration": "09/28",
+      "name_on_card": "Sarah Thompson",
+      "billing_address": "800 Finance Ave, New York, NY 10001",
+      "security_code": "456"
+    },
+    "approval": {
+      "signature": "Marianne Thompson",
+      "date": "2025-11-25"
+    }
+  }
+  

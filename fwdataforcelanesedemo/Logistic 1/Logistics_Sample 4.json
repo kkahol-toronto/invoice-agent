@@ -1,0 +1,41 @@
+{
+    "customer_po": "110965",
+    "order_date": "2024-11-04",
+    "bill_to": {
+      "company_name": "Global Tech",
+      "address": "789 Commerce Blvd, Chicago, IL 60601",
+      "attn": "Carter Lewis",
+      "phone": "(312) 555-0986"
+    },
+    "ship_to": {
+      "company_name": "Precision Fabricators",
+      "address": "25 Sunset Peak TR, Chicago, IL 60601",
+      "attn": "David Taylor",
+      "phone": "(312) 555-4963"
+    },
+    "items": [
+      {
+        "product_name": "Vinyl Acetate Monomer",
+        "product_code": "VM0001",
+        "shipping_date": "2024-11-05",
+        "comments": "Partial shipment due to inventory shortage",
+        "unit_cost": 80,
+        "quantity": 300,
+        "total": 24000
+      },
+      {
+        "product_name": "Polyoxymethylene (POM)",
+        "product_code": "POM061",
+        "shipping_date": "2024-11-10",
+        "comments": "Complete shipment on revised date",
+        "unit_cost": 25,
+        "quantity": 250,
+        "total": 6250
+      }
+    ],
+    "tax_exempt": "Yes",
+    "payment_terms": "Net 30",
+    "shipping_method": "Fed Ex",
+    "sub_total": 30250
+  }
+  

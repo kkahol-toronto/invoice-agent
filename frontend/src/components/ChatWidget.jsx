@@ -54,11 +54,11 @@ export function ChatWidget({ cases = [], statistics = null, currentCase = null }
     // Prepare context for NIPS
     const contextIntro = activeCase
       ? `Case context:\n` +
-        `- Case ID: ${activeCase.id}\n` +
-        `- Vendor: ${activeCase.vendor}\n` +
-        `- Customer: ${activeCase.customer}\n` +
-        `- Type: ${activeCase.type}\n` +
-        `- Status: ${activeCase.status}\n` +
+        `- Case ID: ${activeCase.id || 'N/A'}\n` +
+        `- Vendor: ${activeCase.vendor || 'N/A'}\n` +
+        `- Customer: ${activeCase.customer || 'N/A'}\n` +
+        `- Type: ${activeCase.type || 'N/A'}\n` +
+        `- Status: ${activeCase.status || 'Unknown'}\n` +
         `- ATP Notes: ${activeCase.atpNotes || 'No notes'}\n\n`
       : '';
 
@@ -74,27 +74,27 @@ export function ChatWidget({ cases = [], statistics = null, currentCase = null }
           context_type: activeCase ? 'case' : 'dashboard',
           claims_data: {
             statistics: statistics ? {
-              totalInvoices: statistics.totalInvoices,
-              approved: statistics.approved,
-              pending: statistics.pending,
-              atpAlerts: statistics.atpAlerts
+              totalInvoices: statistics.totalInvoices || 0,
+              approved: statistics.approved || 0,
+              pending: statistics.pending || 0,
+              atpAlerts: statistics.atpAlerts || 0
             } : null,
-            recentCases: cases.slice(0, 5).map(caseItem => ({
-              id: caseItem.id,
-              vendor: caseItem.vendor,
-              customer: caseItem.customer,
-              type: caseItem.type,
-              status: caseItem.status,
-              atpNotes: caseItem.atpNotes
+            recentCases: (cases || []).slice(0, 5).map(caseItem => ({
+              id: caseItem?.id || 'N/A',
+              vendor: caseItem?.vendor || 'N/A',
+              customer: caseItem?.customer || 'N/A',
+              type: caseItem?.type || 'N/A',
+              status: caseItem?.status || 'Unknown',
+              atpNotes: caseItem?.atpNotes || 'No notes'
             })),
             currentCase: activeCase ? {
-              id: activeCase.id,
-              vendor: activeCase.vendor,
-              customer: activeCase.customer,
-              type: activeCase.type,
-              status: activeCase.status,
-              atpNotes: activeCase.atpNotes,
-              amount: activeCase.amount
+              id: activeCase.id || 'N/A',
+              vendor: activeCase.vendor || 'N/A',
+              customer: activeCase.customer || 'N/A',
+              type: activeCase.type || 'N/A',
+              status: activeCase.status || 'Unknown',
+              atpNotes: activeCase.atpNotes || 'No notes',
+              amount: activeCase.amount != null ? activeCase.amount : null
             } : null
           },
           client: 'nips'

@@ -1,0 +1,50 @@
+{
+    "document": "Corporate Sales Order Form",
+    "customer": {
+      "customer_name": "Marry Leos",
+      "company_name": "Carter Chemicals Inc.",
+      "company_address": "29 Washington Pl",
+      "city": "New York",
+      "state": "NY",
+      "zip_code": "10003",
+      "ship_to_company_name": "",
+      "ship_to_customer_name": "",
+      "ship_to_address": "",
+      "ship_to_city": "",
+      "ship_to_state": "",
+      "ship_to_zip_code": "",
+      "phone_number": "(214)555-7890",
+      "fax_number": "(214) 555-7891",
+      "email": "mleos@carterchem.com",
+      "website": "www.carterchem.com"
+    },
+    "order_details": {
+      "items": [
+        {
+          "order_id": "8015g00000SO45009732",
+          "product_name": "Isobutyric Anhydride",
+          "quantity": 1000,
+          "unit_price": "$1.5 / unit",
+          "total_price": 1500,
+          "atp_status": "Available"
+        }
+      ],
+      "total_price": 1500
+    },
+    "payment_information": {
+      "credit_card_type": "Visa",
+      "credit_card_number_masked": "**** **** **** 9081",
+      "expiration_date": "12/29",
+      "name_on_card": "Mary Leos",
+      "check_number": "N/A"
+    },
+    "submit_to": {
+      "company": "Celanese",
+      "address": "222 Las Colinas Blvd W, Suite 900N, Irving, Texas, 75039",
+      "phone": "972-443-4000",
+      "fax": "941-556-1851",
+      "email": "info@celanese.com"
+    },
+    "notes": "All information must be filled out for order processing. For assistance call 1-800-688-7075."
+  }
+  

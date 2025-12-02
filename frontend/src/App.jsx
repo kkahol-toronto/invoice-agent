@@ -17,20 +17,54 @@ function App() {
       try {
         const enriched = await Promise.all(
           caseDefinitions.map(async (definition) => {
-            const [advanced, reasoning] = await Promise.all([
-              fetch(definition.advancedPath).then((res) => res.json()),
-              fetch(definition.reasoningPath).then((res) => res.json())
-            ]);
-            return {
-              ...definition,
-              advanced,
-              reasoning
-            };
+            try {
+              const [advanced, reasoning] = await Promise.all([
+                fetch(definition.advancedPath)
+                  .then((res) => {
+                    if (!res.ok) {
+                      console.warn(`Failed to load ${definition.advancedPath}: ${res.status}`);
+                      return {};
+                    }
+                    return res.json();
+                  })
+                  .catch((err) => {
+                    console.warn(`Error loading ${definition.advancedPath}:`, err);
+                    return {};
+                  }),
+                fetch(definition.reasoningPath)
+                  .then((res) => {
+                    if (!res.ok) {
+                      console.warn(`Failed to load ${definition.reasoningPath}: ${res.status}`);
+                      return {};
+                    }
+                    return res.json();
+                  })
+                  .catch((err) => {
+                    console.warn(`Error loading ${definition.reasoningPath}:`, err);
+                    return {};
+                  })
+              ]);
+              return {
+                ...definition,
+                advanced,
+                reasoning
+              };
+            } catch (error) {
+              console.error(`Error loading case ${definition.id}:`, error);
+              // Return case definition even if JSON files fail to load
+              return {
+                ...definition,
+                advanced: {},
+                reasoning: {}
+              };
+            }
           })
         );
         setCases(enriched);
       } catch (error) {
         console.error('Failed to load case data', error);
+        // Still set cases even if some fail
+        setCases(caseDefinitions.map(def => ({ ...def, advanced: {}, reasoning: {} })));
       } finally {
         setLoading(false);
       }
@@ -74,15 +108,24 @@ function App() {
               <div className="glass-card summary-card">
                 <h3>Outstanding ATP guidance</h3>
                 <ul>
-                  {cases.slice(0, 4).map((caseItem) => (
-                    <li key={caseItem.id}>
-                      <div>
-                        <strong>{caseItem.vendor}</strong>
-                        <span>{caseItem.atpNotes}</span>
-                      </div>
-                      <span className={`status status--${statusVariant(caseItem.status)}`}>{caseItem.status}</span>
-                    </li>
-                  ))}
+                  {cases && cases.length > 0 ? (
+                    cases.slice(0, 4).map((caseItem) => {
+                      if (!caseItem) return null;
+                      return (
+                        <li key={caseItem.id || Math.random()}>
+                          <div>
+                            <strong>{caseItem.vendor || 'N/A'}</strong>
+                            <span>{caseItem.atpNotes || 'No notes available'}</span>
+                          </div>
+                          <span className={`status status--${statusVariant(caseItem.status)}`}>
+                            {caseItem.status || 'Unknown'}
+                          </span>
+                        </li>
+                      );
+                    })
+                  ) : (
+                    <li>No cases available</li>
+                  )}
                 </ul>
               </div>
             </div>
@@ -98,7 +141,7 @@ function App() {
 }
 
 const computeStats = (cases) => {
-  if (!cases.length) {
+  if (!cases || !Array.isArray(cases) || cases.length === 0) {
     return {
       totalInvoices: 0,
       approved: 0,
@@ -109,16 +152,16 @@ const computeStats = (cases) => {
     };
   }
   const total = cases.length;
-  const approved = cases.filter((c) => c.status.toLowerCase().includes('ready')).length;
-  const pending = cases.filter((c) => c.status.toLowerCase().includes('pending')).length;
-  const atpAlerts = cases.filter((c) => c.type === 'ATP' && !c.status.toLowerCase().includes('ready')).length;
+  const approved = cases.filter((c) => c && c.status && c.status.toLowerCase().includes('ready')).length;
+  const pending = cases.filter((c) => c && c.status && (c.status.toLowerCase().includes('pending') || c.status.toLowerCase().includes('review'))).length;
+  const atpAlerts = cases.filter((c) => c && c.type === 'ATP' && c.status && !c.status.toLowerCase().includes('ready')).length;
   return {
     totalInvoices: total * 24,
     approved,
     pending,
     atpAlerts,
-    approvedPercent: Math.round((approved / total) * 100),
-    pendingPercent: Math.round((pending / total) * 100)
+    approvedPercent: total > 0 ? Math.round((approved / total) * 100) : 0,
+    pendingPercent: total > 0 ? Math.round((pending / total) * 100) : 0
   };
 };
 

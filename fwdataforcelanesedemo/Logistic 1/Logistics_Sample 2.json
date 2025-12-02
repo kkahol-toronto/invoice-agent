@@ -1,0 +1,32 @@
+{
+    "customer_name": "Michael Johnson",
+    "company_name": "Apex Manufacturing Co.",
+    "company_address": "321 Industrial Way, Suite 400, Manufacturing City, IL 60601",
+    "ship_to": {
+      "company_name": "Global Enterprise Solutions",
+      "customer_name": "Global Enterprise Solutions",
+      "address": "654 Distribution Drive, Manufacturing City, IL 60602"
+    },
+    "contact": {
+      "phone": "(555) 789-1234",
+      "email": "michael.johnson@apexmfg.com"
+    },
+    "order_details": [
+      { "item_number": 101, "description": "Sodium Chloride", "quantity": 15, "unit_price": 120, "total_price": 1800 },
+      { "item_number": 102, "description": "Hydrochloric acid", "quantity": 10, "unit_price": 90, "total_price": 900 },
+      { "item_number": 103, "description": "Ethanol", "quantity": 25, "unit_price": 45, "total_price": 1125 }
+    ],
+    "payment": {
+      "method": "Bank Transfer",
+      "bank_account": "876543210",
+      "routing_number": "654321098",
+      "total_amount": 3825
+    },
+    "logistics": {
+      "carrier": "Reliable Transport Services",
+      "tracking_number": "RTS654321987",
+      "est_delivery_date": "2023-11-12",
+      "instructions": "Coordinate delivery with warehouse manager."
+    }
+  }
+  
