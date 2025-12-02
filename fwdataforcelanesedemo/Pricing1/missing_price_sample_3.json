@@ -1,0 +1,32 @@
+{
+    "customer": {
+        "name": "Christopher Davis",
+        "title": "Supply Chain Manager",
+        "organization": "PVS Chemicals",
+        "address_1": "109 Harper Ave",
+        "city": "Detroit",
+        "state": "MI",
+        "zip": "48213",
+        "phone": "313-921-1200",
+        "email": "cdavis@pvschemicals.com",
+        "date": "2025-07-04",
+        "po_check_number": "1425-Acid"
+    },
+    "order_information": {
+        "product_name": "Acetic acid",
+        "status": "Pending",
+        "cost": null,
+        "quantity": "100 Units",
+        "total_product_cost": null
+    },
+    "shipping_handling": {
+        "subtotal_units": 100,
+        "subtotal_cost": null,
+        "shipping_handling_cost": null,
+        "total_order_amount": null
+    },
+    "office_use": {
+        "date_received": "2025-07-04",
+        "date_shipped": "2025-07-15"
+    }
+}

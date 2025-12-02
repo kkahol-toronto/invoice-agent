@@ -1,0 +1,34 @@
+{
+    "customer": {
+        "name": "Mike Adam",
+        "title": "Supply Chain Manager",
+        "organization": "Lotte Chemicals",
+        "address_1": "6 Centerpointe",
+        "address_2": "Dr. Suite 100",
+        "city": "Palma",
+        "state": "CA",
+        "zip": "90623",
+        "phone": "714-443-0901",
+        "email": "madam@lottechemicals.com",
+        "date": "2025-06-10",
+        "po_check_number": "1745-Acid"
+    },
+    "order_information": {
+        "product_name": "Tartaric Acid",
+        "status": "Pending",
+        "cost": 150,
+        "quantity": "100 Units",
+        "total_product_cost": 15000
+    },
+    "shipping_handling": {
+        "shipping_method": "Fed Ex Ground",
+        "subtotal_units": 100,
+        "subtotal_cost": 15000,
+        "shipping_handling_cost": 2250,
+        "total_order_amount": 17250
+    },
+    "office_use": {
+        "date_received": "2025-06-10",
+        "date_shipped": "2025-06-21"
+    }
+}

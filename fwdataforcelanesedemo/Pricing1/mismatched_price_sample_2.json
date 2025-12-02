@@ -1,0 +1,32 @@
+{
+    "customer": {
+        "name": "Kim Berk",
+        "title": "Supply Chain Manager",
+        "organization": "Seatex Chemicals",
+        "address_1": "1102 N Blue Creek Rd",
+        "city": "El Campo",
+        "state": "TX",
+        "zip": "77437",
+        "phone": "979-320-0525",
+        "email": "kimberk@seatexchemicals.com",
+        "date": "2025-04-08",
+        "po_check_number": "1411-Acid"
+    },
+    "order_information": {
+        "product_name": "Paraformaldehyde",
+        "status": "Pending",
+        "cost": 180,
+        "quantity": "120 Units",
+        "total_product_cost": 21600
+    },
+    "shipping_handling": {
+        "subtotal_units": 120,
+        "subtotal_cost": 21600,
+        "shipping_handling_cost": 3240,
+        "total_order_amount": 24840
+    },
+    "office_use": {
+        "date_received": "2025-04-08",
+        "date_shipped": "2025-04-17"
+    }
+}

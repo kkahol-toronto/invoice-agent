@@ -1,0 +1,33 @@
+{
+    "customer": {
+        "name": "Cruz Smith",
+        "title": "Supply Chain Manager",
+        "organization": "Lubrizol Corporation",
+        "address_1": "376 Industrial Lane",
+        "address_2": "Suite 100",
+        "city": "Wickliffe",
+        "state": "OH",
+        "zip": "44092",
+        "phone": "890-712-9541",
+        "email": "CSmith@LubrizolCorporation.com",
+        "date": "2025-11-01",
+        "po_check_number": "1025-Acid"
+    },
+    "order_information": {
+        "product_name": "Vinyl Acetate",
+        "status": "Pending",
+        "cost": null,
+        "quantity": "120 Units",
+        "total_product_cost": null
+    },
+    "shipping_handling": {
+        "subtotal_units": 120,
+        "subtotal_cost": null,
+        "shipping_handling_cost": null,
+        "total_order_amount": null
+    },
+    "office_use": {
+        "date_received": "2025-11-09",
+        "date_shipped": "2025-11-25"
+    }
+}

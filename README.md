@@ -47,6 +47,23 @@ When opening a case, the system runs an automated pipeline based on case type:
 13. **Integration Agent** - Pushes to ECM, ERP, or DMS systems
 14. **Communication Agent** - Drafts vendor communications with email functionality
 
+#### Pricing Cases (14-stage pipeline):
+1. **Pricing Document Ingestion Agent** - Validates PDF and prepares metadata
+2. **Document Classifier Agent** - Detects document type and pricing intent (Missing Price, Mismatched Price, Formula Not Updated, Ongoing Negotiation)
+3. **OCR + Vision Agent** - Extracts text, tables, prices, units (handles faint ink, handwritten modifications, strikethroughs)
+4. **Pricing Table Reconstruction Agent** - Rebuilds pricing tables with header alignment
+5. **Key Price Value Extraction Agent** - Extracts core numeric data (unit price, total price, quantity, customer-requested vs Celanese-offered prices)
+6. **Pricing Normalization Agent** - Converts extracted values into standard formats
+7. **Missing/Mismatched Price Detection Agent** - Identifies pricing anomalies
+8. **Formula Verification Agent** - Validates pricing formulas and calculations
+9. **Historical Price Lookup Agent** - Compares with previous orders, ERP baseline, and market prices
+10. **Pricing Policy Compliance Agent** - Verifies margin thresholds, deviations, and regional rules
+11. **Negotiation Intelligence Agent** - Analyzes negotiation context and recommends strategy
+12. **Final Pricing Decision Agent** - Produces final decision (Approve/Reject/Require Approval)
+13. **Pricing JSON Master Builder Agent** - Assembles final pristine pricing JSON record
+14. **ERP / CRM Integration Agent** - Syncs with SAP SD, SAP Pricing, Oracle SCM, and pricing lakehouse
+15. **Communication Agent** - Drafts vendor communications with pricing decision and recommendations
+
 Each stage displays intelligent status messages and logs all activities in a searchable log panel. Extraction results are displayed after their respective stages complete.
 
 ### 💬 AI Copilot
@@ -148,11 +165,11 @@ invoice_agent/
 ### CaseModal
 The agentic workspace that displays:
 - PDF viewer for invoice documents
-- Animated processing pipeline with stage-by-stage progress (6 stages for ATP, 13 stages for Logistics)
+- Animated processing pipeline with stage-by-stage progress (6 stages for ATP, 13 stages for Logistics, 14 stages for Pricing)
 - Extraction results (Advanced, Reasoning, Combination) shown after respective stages
-- Extracted JSON data display for logistics cases after integration
-- ATP/Logistics guidance with status badges (dynamically labeled based on case type)
-- Communication agent with email draft and send functionality
+- Extracted JSON data display for logistics and pricing cases after integration
+- ATP/Logistics/Pricing guidance with status badges (dynamically labeled based on case type)
+- Communication agent with email draft and send functionality (context-aware based on case type)
 - Searchable status logs with real-time updates
 - Re-run pipeline button for reprocessing cases
 
@@ -260,8 +277,15 @@ Ensure the backend URL is configured:
 - Polychem Industries
 - NextGen Products - FedEx Freight
 
-**Pricing Cases**: 1 sample case included
-- Polymer Pricing Review
+**Pricing Cases**: 8 sample cases included (PRC-118920, PRC-001 to PRC-007)
+- Polymer Pricing Review (Formula Not Updated)
+- Lotte Chemicals - Mismatched Price
+- Mismatched Price Sample 2
+- PVS Chemicals - Missing Price
+- Missing Price Sample 4
+- Formula Not Updated Sample 2
+- Adams Industrial - Ongoing Negotiation
+- Ongoing Negotiation Sample 2
 
 ## Color Scheme
 

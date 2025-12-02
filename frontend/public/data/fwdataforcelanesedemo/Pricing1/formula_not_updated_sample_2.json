@@ -1,0 +1,32 @@
+{
+    "customer": {
+        "name": "Meridian Chemicals & Additives Corp.",
+        "title": "Raw Materials Purchasing Lead",
+        "organization": "Meridian Global Manufacturing Division",
+        "address_1": "2245 Harbor Industrial Drive",
+        "address_2": "Suite 320",
+        "city": "Jacksonville",
+        "state": "FL",
+        "zip": "32218",
+        "phone": "904-778-9901",
+        "email": "procurement@meridianchem.com",
+        "date": "2025-12-10",
+        "po_check_number": "PO\u2013MCAC\u201355129"
+    },
+    "exception_details": {
+        "type": "Formula Not Updated",
+        "note": "Credit block until pricing formula corrections completed."
+    },
+    "order_information": {
+        "product_name": "Polyoxymethylene POM-700",
+        "order_id": "PO4-10123",
+        "unit_price": 2.5,
+        "unit_of_measure": "Kg",
+        "quantity": 30000,
+        "total_product_cost": 75000
+    },
+    "office_use": {
+        "date_received": "2025-12-10",
+        "date_shipped": "2025-10-13"
+    }
+}

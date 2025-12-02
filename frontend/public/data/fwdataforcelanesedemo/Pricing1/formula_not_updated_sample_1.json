@@ -1,0 +1,28 @@
+{
+    "customer": {
+        "name": "Global Resins & Polymers Inc.",
+        "title": "Senior Procurement Specialist",
+        "organization": "Global Resins Procurement Division",
+        "address_1": "108 Industrial Park Road",
+        "address_2": "Sector 158",
+        "city": "Michigan",
+        "state": "TX",
+        "zip": "77001",
+        "phone": "610-5757-210",
+        "email": "MailtoABCchem@gmail.com",
+        "date": "2025-11-20",
+        "po_check_number": "PO-GRP-77821"
+    },
+    "order_information": {
+        "product_name": "Acetyl Intermediate A-450",
+        "order_id": "P04-010102",
+        "unit_price": 2,
+        "unit_of_measure": "Kg",
+        "quantity": 3000,
+        "total_product_cost": 6000
+    },
+    "office_use": {
+        "date_received": "2025-11-20",
+        "date_shipped": "2025-11-22"
+    }
+}

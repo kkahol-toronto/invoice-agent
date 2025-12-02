@@ -29,6 +29,25 @@ const LOGISTICS_STAGES = [
   { id: 'communication', label: 'Communication Agent', icon: '✉️' }
 ];
 
+// Pricing Pipeline Stages (14 stages - includes communication)
+const PRICING_STAGES = [
+  { id: 'stage0', label: 'Pricing Document Ingestion Agent', icon: '📁' },
+  { id: 'stage1', label: 'Document Classifier Agent', icon: '📋' },
+  { id: 'stage2', label: 'OCR + Vision Agent', icon: '👁️' },
+  { id: 'stage3', label: 'Pricing Table Reconstruction Agent', icon: '🏗️' },
+  { id: 'stage4', label: 'Key Price Value Extraction Agent', icon: '💰' },
+  { id: 'stage5', label: 'Pricing Normalization Agent', icon: '🔄' },
+  { id: 'stage6', label: 'Missing/Mismatched Price Detection Agent', icon: '🔍' },
+  { id: 'stage7', label: 'Formula Verification Agent', icon: '✅' },
+  { id: 'stage8', label: 'Historical Price Lookup Agent', icon: '📊' },
+  { id: 'stage9', label: 'Pricing Policy Compliance Agent', icon: '⚖️' },
+  { id: 'stage10', label: 'Negotiation Intelligence Agent', icon: '🧠' },
+  { id: 'stage11', label: 'Final Pricing Decision Agent', icon: '🎯' },
+  { id: 'stage12', label: 'Pricing JSON Master Builder Agent', icon: '📦' },
+  { id: 'stage13', label: 'ERP / CRM Integration Agent', icon: '🔌' },
+  { id: 'communication', label: 'Communication Agent', icon: '✉️' }
+];
+
 const ATP_STAGE_MESSAGES = {
   start: 'Initializing agentic pipeline...',
   advanced: 'Running advanced OCR extraction on invoice document...',
@@ -81,6 +100,42 @@ const LOGISTICS_STAGE_COMPLETION_MESSAGES = {
   communication: 'Email draft generated with logistics status, delivery dates, and recommended actions for concerned parties.'
 };
 
+const PRICING_STAGE_MESSAGES = {
+  stage0: 'Validating PDF and preparing metadata...',
+  stage1: 'Detecting document type and pricing intent...',
+  stage2: 'Extracting text, tables, prices, and units with OCR + Vision...',
+  stage3: 'Reconstructing pricing tables with header alignment...',
+  stage4: 'Extracting core numeric and price-critical data...',
+  stage5: 'Converting extracted values into standard formats...',
+  stage6: 'Identifying pricing anomalies (missing/mismatched prices)...',
+  stage7: 'Validating pricing formulas and calculations...',
+  stage8: 'Comparing with historical prices (previous orders, ERP baseline)...',
+  stage9: 'Verifying pricing policy compliance (margins, deviations, regional rules)...',
+  stage10: 'Analyzing negotiation context and recommending strategy...',
+  stage11: 'Producing final pricing decision (Approve/Reject/Require Approval)...',
+  stage12: 'Assembling final pristine pricing JSON record...',
+  stage13: 'Syncing with SAP SD, SAP Pricing, Oracle SCM, and pricing lakehouse...',
+  communication: 'Drafting vendor communication with pricing decision and recommendations...'
+};
+
+const PRICING_STAGE_COMPLETION_MESSAGES = {
+  stage0: `PDF validated. Source: ${['Email upload', 'CRM', 'ERP', 'Procurement portal'][Math.floor(Math.random() * 4)]}. Job ID and file ID created. File stored in document store.`,
+  stage1: `Document classified as: ${['Pricing Exception: Missing Price', 'Pricing Exception: Mismatched Price', 'Pricing Exception: Formula Not Updated', 'Pricing Exception: Ongoing Negotiation', 'Standard Sales Order'][Math.floor(Math.random() * 5)]}.`,
+  stage2: `OCR + Vision extraction complete. Extracted ${Math.floor(Math.random() * 20 + 30)} text boxes, ${Math.floor(Math.random() * 3 + 2)} pricing tables. Detected ${Math.floor(Math.random() * 2 + 1)} handwritten modifications and ${Math.floor(Math.random() * 2 + 1)} strikethroughs.`,
+  stage3: `Pricing table reconstructed. Normalized ${Math.floor(Math.random() * 5 + 3)} columns (Cost, Price, Quantity, Status). Detected ${Math.floor(Math.random() * 2 + 1)} missing cells. Identified ${Math.floor(Math.random() * 2 + 1)} blended negotiation tables.`,
+  stage4: `Key price values extracted. Unit price: $${Math.floor(Math.random() * 100 + 100)}. Total cost: $${Math.floor(Math.random() * 10000 + 5000)}. Quantity: ${Math.floor(Math.random() * 1000 + 100)}. Customer-requested price and Celanese-offered price identified.`,
+  stage5: `Pricing normalized. Converted currency symbols to numeric values. Matched product codes. Standardized units (per kg, per unit, per tonne). Clean, normalized pricing JSON created.`,
+  stage6: `Pricing anomaly detected: ${['Missing Price', 'Mismatched Price', 'Formula Not Updated', 'Ongoing Negotiation'][Math.floor(Math.random() * 4)]}. Details: Customer request vs Celanese price delta calculated.`,
+  stage7: `Formula verification complete. ${Math.random() > 0.5 ? 'Formula validated. Unit price × quantity = total cost confirmed.' : 'Formula issue detected. Pricing formula not updated; credit block in place.'}`,
+  stage8: `Historical price lookup complete. ERP baseline: $${Math.floor(Math.random() * 100 + 100)}. Customer previous price: $${Math.floor(Math.random() * 100 + 100)}. Market price: $${Math.floor(Math.random() * 100 + 100)}.`,
+  stage9: `Policy compliance check complete. ${Math.random() > 0.5 ? 'All margin thresholds met. No violations detected.' : 'Compliance violation detected. Max deviation exceeded. Regional pricing rules flagged.'}`,
+  stage10: `Negotiation intelligence analyzed. Negotiation status: ${['Pending Leadership Approval', 'Customer Counter-Offer Received', 'Awaiting Final Decision'][Math.floor(Math.random() * 3)]}. Recommended new price: $${Math.floor(Math.random() * 100 + 100)}.`,
+  stage11: `Final pricing decision: ${['Approve', 'Require Manager Approval', 'Reject', 'Request Customer Documentation', 'Send for Pricing Formula Update'][Math.floor(Math.random() * 5)]}. Reason: ${['Customer counter-offer above permissible threshold', 'Within acceptable margin', 'Requires additional documentation'][Math.floor(Math.random() * 3)]}.`,
+  stage12: `Pricing JSON master record assembled. Product, unit price, pricing anomaly, compliance flags, and recommendation included. Final pristine JSON ready.`,
+  stage13: `Integration complete. Synced with ${['SAP SD', 'SAP Pricing', 'Oracle SCM', 'Snowflake pricing lakehouse'][Math.floor(Math.random() * 4)]}. Workflows triggered. Confirmation received.`,
+  communication: 'Email draft generated with pricing decision, recommended actions, and next steps for vendor review and approval.'
+};
+
 export function CaseModal({ selectedCase, onClose }) {
   const [activeStage, setActiveStage] = useState(null);
   const [currentMessage, setCurrentMessage] = useState(null);
@@ -97,9 +152,10 @@ export function CaseModal({ selectedCase, onClose }) {
 
   // Determine which pipeline to use based on case type
   const isLogistics = selectedCase?.type === 'Logistics';
-  const STAGES = isLogistics ? LOGISTICS_STAGES : ATP_STAGES;
-  const STAGE_MESSAGES = isLogistics ? LOGISTICS_STAGE_MESSAGES : ATP_STAGE_MESSAGES;
-  const STAGE_COMPLETION_MESSAGES = isLogistics ? LOGISTICS_STAGE_COMPLETION_MESSAGES : ATP_STAGE_COMPLETION_MESSAGES;
+  const isPricing = selectedCase?.type === 'Pricing';
+  const STAGES = isLogistics ? LOGISTICS_STAGES : isPricing ? PRICING_STAGES : ATP_STAGES;
+  const STAGE_MESSAGES = isLogistics ? LOGISTICS_STAGE_MESSAGES : isPricing ? PRICING_STAGE_MESSAGES : ATP_STAGE_MESSAGES;
+  const STAGE_COMPLETION_MESSAGES = isLogistics ? LOGISTICS_STAGE_COMPLETION_MESSAGES : isPricing ? PRICING_STAGE_COMPLETION_MESSAGES : ATP_STAGE_COMPLETION_MESSAGES;
 
   const merged = useMemo(() => {
     if (!selectedCase) return {};
@@ -135,9 +191,9 @@ export function CaseModal({ selectedCase, onClose }) {
 
   const processNextStage = () => {
     // Get current stages based on case type
-    const currentStages = isLogistics ? LOGISTICS_STAGES : ATP_STAGES;
-    const currentMessages = isLogistics ? LOGISTICS_STAGE_MESSAGES : ATP_STAGE_MESSAGES;
-    const currentCompletionMessages = isLogistics ? LOGISTICS_STAGE_COMPLETION_MESSAGES : ATP_STAGE_COMPLETION_MESSAGES;
+    const currentStages = isLogistics ? LOGISTICS_STAGES : isPricing ? PRICING_STAGES : ATP_STAGES;
+    const currentMessages = isLogistics ? LOGISTICS_STAGE_MESSAGES : isPricing ? PRICING_STAGE_MESSAGES : ATP_STAGE_MESSAGES;
+    const currentCompletionMessages = isLogistics ? LOGISTICS_STAGE_COMPLETION_MESSAGES : isPricing ? PRICING_STAGE_COMPLETION_MESSAGES : ATP_STAGE_COMPLETION_MESSAGES;
 
     if (stageIndexRef.current >= currentStages.length) {
       setIsRunning(false);
@@ -165,7 +221,7 @@ export function CaseModal({ selectedCase, onClose }) {
     const messageDuration = 3000 + Math.random() * 2000;
     timeoutRef.current = setTimeout(() => {
       // Show completion message
-      const currentCompletionMessages = isLogistics ? LOGISTICS_STAGE_COMPLETION_MESSAGES : ATP_STAGE_COMPLETION_MESSAGES;
+      const currentCompletionMessages = isLogistics ? LOGISTICS_STAGE_COMPLETION_MESSAGES : isPricing ? PRICING_STAGE_COMPLETION_MESSAGES : ATP_STAGE_COMPLETION_MESSAGES;
       const completionMsg = currentCompletionMessages[stage.id];
       setCurrentMessage(null);
       setCompletionMessage(completionMsg);
@@ -206,10 +262,14 @@ export function CaseModal({ selectedCase, onClose }) {
         processedTimeoutRef.current = setTimeout(() => {
           setShowProcessed(false);
 
-          // Special handling for integration stage (stage12) - show extracted JSON
+          // Special handling for integration stage - show extracted JSON
           if (stage.id === 'stage12' && isLogistics) {
             // Mark stage as completed to show JSON
             setCompletedStages((prev) => new Set([...prev, 'stage12']));
+          }
+          if (stage.id === 'stage13' && isPricing) {
+            // Mark stage as completed to show JSON for pricing
+            setCompletedStages((prev) => new Set([...prev, 'stage13']));
           }
 
           // Special handling for communication stage
@@ -237,7 +297,39 @@ export function CaseModal({ selectedCase, onClose }) {
 
     let draft = '';
     
-    if (isLogistics) {
+    if (isPricing) {
+      // Pricing email draft
+      const pricingAnomaly = atpNotes.includes('Missing Price') ? 'Missing Price' :
+                            atpNotes.includes('Mismatched Price') ? 'Mismatched Price' :
+                            atpNotes.includes('Formula Not Updated') ? 'Formula Not Updated' :
+                            atpNotes.includes('Ongoing Negotiation') ? 'Ongoing Negotiation' : 'Pricing Review';
+      
+      draft = `Subject: Pricing Decision - ${caseId} - ${pricingAnomaly}
+
+Dear ${vendor} Team,
+
+We have completed the pricing review for Case ${caseId} (${customer}).
+
+Pricing Status: ${status}
+Pricing Anomaly: ${pricingAnomaly}
+${amount !== 'TBD' ? `Order Amount: ${amount}` : ''}
+${dueDate !== 'TBD' ? `Due Date: ${dueDate}` : ''}
+
+Details:
+${atpNotes}
+
+Next Steps:
+${pricingAnomaly === 'Missing Price' ? '- Please provide pricing information or update pricing formula\n- Manual pricing entry may be required' :
+  pricingAnomaly === 'Mismatched Price' ? '- Pricing discrepancy identified between customer request and Celanese offer\n- Requires approval from pricing manager\n- Recommended action: Review and approve pricing adjustment' :
+  pricingAnomaly === 'Formula Not Updated' ? '- Pricing formula requires update\n- Credit block detected\n- Action required: Update pricing formula in system' :
+  pricingAnomaly === 'Ongoing Negotiation' ? '- Multiple price versions detected\n- Negotiation status: Pending Leadership Approval\n- Recommended action: Review negotiation terms and approve final pricing' :
+  '- Pricing review complete\n- Awaiting final approval'}
+
+Please review and confirm the pricing decision. If you have any questions, please contact the pricing team.
+
+Best regards,
+Celanese Pricing Team`;
+    } else if (isLogistics) {
       // Logistics email draft
       draft = `Subject: Logistics Status Update - ${caseId}
 
@@ -324,10 +416,9 @@ Enterprise ATP Team`;
             <div className="agentic-pipeline">
               <h4>Agentic Pipeline</h4>
               <div className="pipeline-timeline">
-                {(isLogistics ? LOGISTICS_STAGES : ATP_STAGES).map((stage, idx) => {
-                  const currentStages = isLogistics ? LOGISTICS_STAGES : ATP_STAGES;
+                {STAGES.map((stage, idx) => {
                   const isActive = activeStage === stage.id;
-                  const isCompleted = currentStages.findIndex((s) => s.id === activeStage) > idx;
+                  const isCompleted = STAGES.findIndex((s) => s.id === activeStage) > idx;
                   const isCurrent = isActive && (currentMessage || showProcessed);
 
                   return (
@@ -389,6 +480,14 @@ Enterprise ATP Team`;
                     <pre>{JSON.stringify(merged, null, 2)}</pre>
                   </section>
                 )
+              ) : isPricing ? (
+                // Pricing: Show extracted JSON after integration stage (stage13)
+                completedStages.has('stage13') && merged && Object.keys(merged).length > 0 && (
+                  <section>
+                    <div className="section-title">Extracted Data (Pricing Master JSON)</div>
+                    <pre>{JSON.stringify(merged, null, 2)}</pre>
+                  </section>
+                )
               ) : (
                 // ATP: Show advanced, reasoning, and combination
                 <>
@@ -416,7 +515,9 @@ Enterprise ATP Team`;
 
             {/* Guidance Section */}
             <section className="atp-guidance">
-              <div className="section-title">{isLogistics ? 'Logistics guidance' : 'ATP guidance'}</div>
+              <div className="section-title">
+                {isLogistics ? 'Logistics guidance' : isPricing ? 'Pricing guidance' : 'ATP guidance'}
+              </div>
               <div className={`atp-badge atp-badge--${badgeVariant(selectedCase?.status)}`}>
                 {selectedCase?.status || 'Unknown'}
               </div>
