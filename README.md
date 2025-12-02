@@ -1,10 +1,10 @@
-# Celanese Neural Invoicing Processing System (NIPS)
+# Neural Invoicing Processing System (NIPS)
 
-A modern, AI-powered invoice processing portal for Celanese that provides real-time visibility into invoice processing, ATP (Available-to-Promise) status, logistics, and pricing workflows.
+A modern, AI-powered invoice processing portal for enterprise clients that provides real-time visibility into invoice processing, ATP (Available-to-Promise) status, logistics, and pricing workflows.
 
 ## Overview
 
-NIPS is a comprehensive invoice management system that enables Celanese teams to:
+NIPS is a comprehensive invoice management system that enables enterprise teams to:
 
 - **Monitor Invoice KPIs**: Track processed, approved, pending invoices, and ATP alerts
 - **Visualize Vendor Distribution**: Interactive map showing vendor locations and ATP posture
@@ -18,7 +18,7 @@ NIPS is a comprehensive invoice management system that enables Celanese teams to
 - Real-time KPI metrics (invoices processed, approved, pending, ATP alerts)
 - Vendor & ATP heatmap with interactive markers
 - Searchable case table with filtering capabilities
-- Celanese-branded UI with modern design
+- Enterprise-branded UI with modern design
 
 ### 🤖 Agentic Workspace
 When opening a case, the system runs an automated pipeline:
@@ -49,7 +49,7 @@ Each stage displays intelligent status messages and logs all activities in a sea
 - **Vite** - Fast build tool and dev server
 - **react-simple-maps** - Interactive map visualization
 - **react-markdown** - Markdown rendering for chat responses
-- **CSS3** - Custom styling with Celanese brand colors
+- **CSS3** - Custom styling with enterprise brand colors
 
 ### Backend
 - **FastAPI** - Python web framework
@@ -225,7 +225,7 @@ Ensure the backend URL is configured:
 
 ## Color Scheme
 
-The application uses Celanese brand colors:
+The application uses customizable brand colors:
 - **Primary Purple**: `#6b3ce9`
 - **Orange Accent**: `#ff8c42`
 - **Navy**: `#0b1437`
@@ -234,13 +234,15 @@ The application uses Celanese brand colors:
   - Pending: `#ffbf69` (orange)
   - At Risk: `#ff6b6b` (red)
 
+Colors can be customized via CSS variables to match your enterprise branding.
+
 ## Contributing
 
-This is an internal Celanese project. For contributions, please follow the existing code style and submit pull requests for review.
+This is an enterprise invoice processing solution. For contributions, please follow the existing code style and submit pull requests for review.
 
 ## License
 
-Proprietary - Celanese Corporation. All rights reserved.
+Proprietary - Enterprise use only. All rights reserved.
 
 ## Support
 
@@ -248,5 +250,5 @@ For issues or questions, please contact the development team or create an issue 
 
 ---
 
-**Built with ❤️ for Celanese**
+**Built for enterprise invoice processing**
 
